@@ -2,26 +2,26 @@
     margin-top: 75px;
 }
 
-circle:hover {
+/*circle:hover {
     fill: rgba(255,0,0,.5);
     stroke: #000;
     stroke-width:3px;
   }
-
-.axis path,
+*/
+/*.axis path,
 .axis line {
     fill: none;
     stroke: black;
     shape-rendering: crispEdges;
 }
-
-.axis text {
+*/
+/*.axis text {
     font-family: sans-serif;
     font-size: 11px;
 }
-
-.line {
+*/
+/*.line {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
-}
+}*/
