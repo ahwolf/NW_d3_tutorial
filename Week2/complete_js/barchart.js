@@ -42,13 +42,32 @@ var xScale = d3.scale.ordinal()
   .domain(dataset.map(function(d) {
     return d.name
   }))
-  .rangeRoundBands([0,width],.1);
+  .rangeRoundBands([0, width], .1);
 
 var yScale = d3.scale.linear()
   .domain([0, d3.max(dataset, function(d) {
     return d.value
   })])
   .range([height, 0]);
+
+
+svg.selectAll("rect")
+  .data(dataset)
+  .enter().append("rect")
+  .attr("class", "bar")
+  .attr("x", function(d) {
+    return xScale(d.name)
+  })
+  .attr("y", function(d) {
+    return yScale(d.value)
+  })
+  .attr("height", function(d) {
+    return height - yScale(d.value);
+  })
+  .attr("width", xScale.rangeBand())
+  .attr("fill", "red")
+  .on('mouseover', tip.show)
+  .on('mouseout', tip.hide);
 
 // adding axes
 var xAxis = d3.svg.axis()
@@ -68,61 +87,23 @@ svg.append("g")
   .attr("class", "axis")
   .call(yAxis);
 
-svg.selectAll("rect")
-   .data(dataset)
-   .enter().append("rect")
-   .attr("x", function(d){return xScale(d.name)})
-   .attr("y", function(d){return yScale(d.value)})
-   .attr("width", xScale.rangeBand())
-   .attr("height", function(d) {
-    return height - yScale(d.value);
-    })
-   .attr("fill", "red")
-   .on("mouseover", tip.show)
-   .on("mouseout", tip.hide);
 
+function doTransition() {
+  dataset = createData(20);
 
-function doTransition(){
-  var newData = createData(20);
-
-  yScale.domain([0, d3.max(newData, function(d) {
+  //new yScale domain
+  yScale.domain([0, d3.max(dataset, function(d) {
     return d.value
-  })])
+  })]);
 
-  var newRGB = randomColor();
-
-  svg.selectAll("rect")
-    .data(newData)
+  console.log(dataset);
+  var rects = svg.selectAll(".bar")
+    .data(dataset)
     .transition().duration(500)
-    .attr("y", function(d){return yScale(d.value)})
+    .attr("y", function(d) {
+      return yScale(d.value)
+    })
     .attr("height", function(d) {
       return height - yScale(d.value);
-    })
-    .attr("fill", newRGB);
+    });
 }
-
-function randomColor(){
-  var red = Math.floor((Math.random() * 255))
-  var green = Math.floor((Math.random() * 255))
-  var blue = Math.floor((Math.random() * 255))
-  return "rgb(" + red + "," + green + "," + blue + ")";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

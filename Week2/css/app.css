@@ -8,18 +8,18 @@
     stroke-width:3px;
   }
 */
-/*.axis path,
+.axis path,
 .axis line {
     fill: none;
     stroke: black;
     shape-rendering: crispEdges;
 }
-*/
-/*.axis text {
+
+.axis text {
     font-family: sans-serif;
     font-size: 11px;
 }
-*/
+
 /*.line {
   fill: none;
   stroke: steelblue;

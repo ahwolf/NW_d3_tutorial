@@ -12,7 +12,6 @@ var dataset = [
 ];
 
 
-
 // initializing the svg -- very commmon, use this as a template
 var margin = {
     top: 20,
@@ -24,13 +23,11 @@ var margin = {
 var width = 960 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 
-
 var tip = d3.tip()
       .attr('class', 'd3-tip')
       .html(function(d) { return d })
       .direction('n')
       .offset([-10, 0]);
-
 
 var svg = d3.select("#graph").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -38,6 +35,7 @@ var svg = d3.select("#graph").append("svg")
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .call(tip);
+
 
 var xScale = d3.scale.linear()
         .domain([0, d3.max(dataset, function(d){return d[0]})])
@@ -47,6 +45,7 @@ var yScale = d3.scale.linear()
         .domain([0, d3.max(dataset, function(d){return d[1]})])
         .range([height, 0]);
 
+
 svg.selectAll("circle")
     .data(dataset)
     .enter().append("circle")
@@ -54,13 +53,13 @@ svg.selectAll("circle")
     .attr("cy", function(d){return yScale(d[1])})
     .attr("r", function(d){return Math.floor((Math.random()*10)+5);})
     .attr("fill", "red")
-    .on("mouseover", tip.show)
-    .on("mouseout", tip.hide);
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
 // adding axes
 var xAxis = d3.svg.axis()
-    .scale(xScale)
-    .orient("bottom");
+                  .scale(xScale)
+                  .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(yScale)
@@ -74,7 +73,5 @@ svg.append("g")
 svg.append("g")
       .attr("class", "axis")
       .call(yAxis);
-
-
 
 
