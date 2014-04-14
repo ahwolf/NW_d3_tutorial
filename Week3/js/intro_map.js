@@ -1,0 +1,1 @@
+var layer = new L.StamenTileLayer("watercolor");
