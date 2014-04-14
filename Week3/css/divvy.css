@@ -1,0 +1,34 @@
+#map {
+  width: 960px;
+  height: 1000px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:50px;
+  margin-bottom:100px;
+}
+
+#station_detail {
+  font-size:36px;
+  width:960px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:50px;
+}
+
+svg {
+  position: relative;
+}
+path {
+  fill: #000;
+  fill-opacity: .7;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+path:hover {
+  fill: brown;
+  fill-opacity: .8;
+}
+#map_wrapper{
+  width: 100%;
+}
